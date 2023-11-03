@@ -1,3 +1,16 @@
 <mat-toolbar color="primary">
-  header works!
+  <span>
+    <a routerLink="/">
+      Mes messages
+    </a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button routerLink="/create" routerLinkActive="active-link">
+        <i class="fa-solid fa-plus"></i>
+        Nouveau message
+      </a>
+    </li>
+  </ul>
 </mat-toolbar>
