@@ -1,29 +1,35 @@
 <mat-card>
-  <form #postForm="ngForm" (submit)="onAddPost(postForm)">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <form #postForm="ngForm" (submit)="onSavePost(postForm)" *ngIf="!isLoading">
     <mat-form-field>
-      <mat-label>Enter your post title</mat-label>
+      <mat-label>
+        Saisissez le titre de votre message
+      </mat-label>
       <input 
         matInput 
         type="text" 
         name="title"
-        ngModel 
+        [ngModel]="post?.title" 
         required 
         #title="ngModel">
         <mat-error *ngIf="title.invalid">
-          Please enter a post title
+          Veuillez saisir un titre de message
         </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Enter your post content</mat-label>
+      <mat-label>
+        Saisissez le contenu de votre message
+      </mat-label>
       <textarea 
         matInput 
         name="content"
-        ngModel 
+        [ngModel]="post?.content"
         required 
         #content="ngModel">
       </textarea>
       <mat-error *ngIf="content.invalid">
-        Please enter your post content
+        Veuillez saisir le contenu de votre message
       </mat-error>
     </mat-form-field>
   
@@ -31,9 +37,9 @@
       <button 
         mat-raised-button 
         color="accent" 
-        type="submit" 
-        [disabled]="!postForm.valid">
-        Save post
+        type="submit">
+        <i class="fa-regular fa-floppy-disk"></i>
+        Enregistrer
     </button>
     </div>
   </form>
