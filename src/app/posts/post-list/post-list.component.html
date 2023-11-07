@@ -1,35 +1,48 @@
-<div class="spinner-container">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="list-container">
+  <h1 class="list-title">La liste de mes messages</h1>
+  <div class="spinner-container">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+  <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
+    <mat-expansion-panel *ngFor="let post of posts">
+      <mat-expansion-panel-header class="post-title">
+        {{ post.title }}
+      </mat-expansion-panel-header>
+      <div class="post-image">
+        <img [src]="post.imagePath" alt="post.title">
+      </div>
+      <p>{{ post.content }}</p>
+      <mat-action-row>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [routerLink]="['/edit', post.id]">
+          <i class="fa-regular fa-pen-to-square"></i>
+          Modifier
+        </button>
+        <button 
+          mat-raised-button 
+          color="warn" 
+          (click)="onDelete(post.id)">
+          <i class="fa-regular fa-trash-can"></i>
+          Supprimer
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="div-paginator">
+    <mat-paginator *ngIf="posts.length"
+      [length]="totalPosts" 
+      [pageSize]="postsPerPage" 
+      [pageSizeOptions]="pageSizeOptions" 
+      (page)="onChangedPage($event)">
+    </mat-paginator>
+  </div>
+  
+  <p 
+    class="mat-body-1 design-info-text" 
+    *ngIf="posts.length <= 0 && !isLoading">
+    Aucun message ajouté pour l'instant !
+  </p>
 </div>
-<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
-  <mat-expansion-panel *ngFor="let post of posts">
-    <mat-expansion-panel-header class="post-title">
-      {{ post.title }}
-    </mat-expansion-panel-header>
-    <div class="post-image">
-      <img [src]="post.imagePath" alt="post.title">
-    </div>
-    <p>{{ post.content }}</p>
-    <mat-action-row>
-      <button 
-        mat-raised-button 
-        color="primary" 
-        [routerLink]="['/edit', post.id]">
-        <i class="fa-regular fa-pen-to-square"></i>
-        Modifier
-      </button>
-      <button 
-        mat-raised-button 
-        color="warn" 
-        (click)="onDelete(post.id)">
-        <i class="fa-regular fa-trash-can"></i>
-        Supprimer
-      </button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
-<p 
-  class="mat-body-1 design-info-text" 
-  *ngIf="posts.length <= 0 && !isLoading">
-  Aucun message ajouté pour l'instant !
-</p>

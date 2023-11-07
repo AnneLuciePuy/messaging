@@ -1,49 +1,52 @@
-<mat-card>
-  <ng-container>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-  </ng-container>
-  <form [formGroup]="postForm" (submit)="onSavePost()" *ngIf="!isLoading">
-    <mat-form-field>
-      <mat-label>
-        Saisir le titre de votre message
-      </mat-label>
-      <input 
-        matInput 
-        type="text" 
-        formControlName="title">
-        <mat-error *ngIf="postForm.get('title').invalid">
-          Veuillez saisir un titre de message
+<div class="list-container">
+  <h1 class="list-title">Ajouter un nouveau message</h1>
+  <mat-card>
+    <ng-container>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </ng-container>
+    <form [formGroup]="postForm" (submit)="onSavePost()" *ngIf="!isLoading">
+      <mat-form-field>
+        <mat-label>
+          Saisir le titre de votre message
+        </mat-label>
+        <input 
+          matInput 
+          type="text" 
+          formControlName="title">
+          <mat-error *ngIf="postForm.get('title').invalid">
+            Veuillez saisir un titre de message
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>
+          Saisir le contenu de votre message
+        </mat-label>
+        <textarea 
+          matInput 
+          formControlName="content">
+        </textarea>
+        <mat-error *ngIf="postForm.get('content').invalid">
+          Veuillez saisir le contenu de votre message
         </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>
-        Saisir le contenu de votre message
-      </mat-label>
-      <textarea 
-        matInput 
-        formControlName="content">
-      </textarea>
-      <mat-error *ngIf="postForm.get('content').invalid">
-        Veuillez saisir le contenu de votre message
-      </mat-error>
-    </mat-form-field>
+      </mat-form-field>
 
-    <div class="button-image">
-      <button mat-strock-button type="button" (click)="filePicker.click()">Choisir une image</button>
-      <input type="file" #filePicker (change)="onImagePick($event)">
-    </div>
-    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && postForm.get('image').valid">
-      <img [src]="imagePreview" alt="postForm.value.title">
-    </div>
-  
-    <div class="design-div">
-      <button 
-        mat-raised-button 
-        color="accent" 
-        type="submit">
-        <i class="fa-regular fa-floppy-disk"></i>
-        Enregistrer
-    </button>
-    </div>
-  </form>
-</mat-card>
+      <div class="button-image">
+        <button mat-strock-button type="button" (click)="filePicker.click()">Choisir une image</button>
+        <input type="file" #filePicker (change)="onImagePick($event)">
+      </div>
+      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && postForm.get('image').valid">
+        <img [src]="imagePreview" alt="postForm.value.title">
+      </div>
+    
+      <div class="design-div">
+        <button 
+          mat-raised-button 
+          color="accent" 
+          type="submit">
+          <i class="fa-regular fa-floppy-disk"></i>
+          Enregistrer
+      </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
