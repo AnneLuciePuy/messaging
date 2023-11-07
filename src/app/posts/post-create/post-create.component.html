@@ -1,5 +1,10 @@
 <div class="list-container">
-  <h1 class="list-title">Ajouter un nouveau message</h1>
+  <ng-container *ngIf="mode === 'create'">
+    <h1 class="list-title">Ajout d'un nouveau message</h1>
+  </ng-container>
+  <ng-container *ngIf="mode === 'edit'">
+    <h1 class="list-title">Modification d'un message</h1>
+  </ng-container>
   <mat-card>
     <ng-container>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
@@ -38,14 +43,25 @@
         <img [src]="imagePreview" alt="postForm.value.title">
       </div>
     
-      <div class="design-div">
-        <button 
-          mat-raised-button 
-          color="accent" 
-          type="submit">
-          <i class="fa-regular fa-floppy-disk"></i>
-          Enregistrer
-      </button>
+      <div class="div-button">
+        <ng-container *ngIf="mode === 'create'">
+          <button 
+            mat-raised-button 
+            color="accent" 
+            type="submit">
+            <i class="fa-solid fa-plus"></i>
+            Ajouter
+          </button>
+        </ng-container>
+        <ng-container *ngIf="mode === 'edit'">
+          <button 
+            mat-raised-button 
+            color="accent" 
+            type="submit">
+            <i class="fa-solid fa-pencil"></i>
+            Modifier
+        </button>
+        </ng-container>
       </div>
     </form>
   </mat-card>
