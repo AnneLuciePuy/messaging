@@ -18,9 +18,8 @@ export class PostCreateComponent  implements OnInit {
   post: Post;
   isLoading: boolean = false;
   postForm: FormGroup;
-  
+  mode = "create";
 
-  private mode = "create";
   private postId: string;
  
   constructor(
@@ -29,6 +28,7 @@ export class PostCreateComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('mode', this.mode)
     this.postForm = new FormGroup({
       title: new FormControl(null, { 
         validators: [Validators.required, Validators.minLength(5)] 

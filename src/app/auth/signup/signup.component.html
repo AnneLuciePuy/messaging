@@ -1,0 +1,42 @@
+<div class="list-container">
+  <h1 class="list-title">S'inscrire</h1>
+  <mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="signupForm" (submit)="onSignup()" *ngIf="!isLoading">
+      <mat-form-field>
+        <mat-label>
+          Email
+        </mat-label>
+        <input 
+          matInput 
+          type="email" 
+          formControlName="email">
+          <mat-error *ngIf="signupForm.get('email').invalid">
+            Veuillez saisir un email valide!
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>
+          Mot de passe
+        </mat-label>
+        <input 
+          matInput
+          type="password" 
+          formControlName="password">
+        <mat-error *ngIf="signupForm.get('password').invalid">
+          Veuillez saisir un mot de passe valide!
+        </mat-error>
+      </mat-form-field>
+    
+      <div class="div-button" *ngIf="!isLoading">
+        <button 
+          mat-raised-button 
+          color="accent" 
+          type="submit">
+          <i class="fa-solid fa-user-plus"></i>
+          S'inscrire
+      </button>
+      </div>
+    </form>
+</mat-card>
+</div>
