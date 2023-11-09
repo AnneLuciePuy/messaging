@@ -1,6 +1,7 @@
 <div class="list-container">
   <h1 class="list-title">S'inscrire</h1>
   <mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <form [formGroup]="signupForm" (submit)="onSignup()" *ngIf="!isLoading">
       <mat-form-field>
         <mat-label>
@@ -27,7 +28,7 @@
         </mat-error>
       </mat-form-field>
     
-      <div class="div-button">
+      <div class="div-button" *ngIf="!isLoading">
         <button 
           mat-raised-button 
           color="accent" 

@@ -6,23 +6,29 @@
   </span>
   <span class="spacer"></span>
   <ul class="header-ul">
-    <li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="active-link">
         <i class="fa-solid fa-plus"></i>
         Nouveau message
       </a>
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="active-link">
         <i class="fa-solid fa-arrow-right-to-bracket"></i>
         Se connecter
       </a>
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/signup" routerLinkActive="active-link">
         <i class="fa-solid fa-user-plus"></i>
         S'inscrire
       </a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        Se déconnecter
+      </button>
     </li>
   </ul>
 </mat-toolbar>
