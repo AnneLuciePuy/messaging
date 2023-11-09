@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
-    console.log('loginForm', this.loginForm.value);
   }
 
 }
