@@ -9,7 +9,8 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  userIsAuthenticated: boolean = false;
+  public userIsAuthenticated: boolean = false;
+
   private authListerSubs: Subscription;
 
   constructor(
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLogout() {
+  public onLogout() {
     this.authService.logout();
   }
 

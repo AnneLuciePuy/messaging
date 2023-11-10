@@ -7,6 +7,6 @@ module.exports = (req, res, next) => {
         req.userData = { email: decodedToken.email, userId: decodedToken.userId };
         next();
     } catch (error) {
-        res.status(401).json({ message: 'Auth failed, you not allowed to do this action !' });
+        res.status(401).json({ message: "Vous n'êtes pas authentifié!" });
     }
 }

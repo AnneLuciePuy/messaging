@@ -1,30 +1,34 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Subscription } from "rxjs";
 
 import { Post } from "../post.model";
 import { PostsService } from "../posts.service";
 import { mimeType } from "./mime-type.validator";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.scss']
 })
-export class PostCreateComponent  implements OnInit {
-  enteredTitle: string = '';
-  enteredContent: string = '';
-  imagePreview: string;
-  post: Post;
-  isLoading: boolean = false;
-  postForm: FormGroup;
-  mode = "create";
+export class PostCreateComponent  implements OnInit, OnDestroy {
+  public enteredTitle: string = '';
+  public enteredContent: string = '';
+  public imagePreview: string;
+  public post: Post;
+  public isLoading: boolean = false;
+  public postForm: FormGroup;
+  public mode = "create";
 
   private postId: string;
+  private authStatusSub: Subscription;
  
   constructor(
     public postsService: PostsService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -67,9 +71,15 @@ export class PostCreateComponent  implements OnInit {
         this.postId = null;
       }
     });
+
+    this.authStatusSub = this.authService.getAuthStatusLister().subscribe({
+      next: (authStatus) => {
+        this.isLoading = false;
+      }
+    });
   }
 
-  onImagePick(event: Event) {
+  public onImagePick(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.postForm.patchValue({ image: file });
     this.postForm.get('image').updateValueAndValidity();
@@ -80,7 +90,7 @@ export class PostCreateComponent  implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onSavePost() {
+  public onSavePost() {
     if (this.postForm.invalid) {
       return;
     };
@@ -103,5 +113,9 @@ export class PostCreateComponent  implements OnInit {
     };
     
     this.postForm.reset();
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 }
