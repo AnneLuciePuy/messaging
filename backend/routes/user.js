@@ -17,14 +17,13 @@ router.post('/signup', (req, res, next) => {
             user.save()
             .then(result => {
                 res.status(201).json({
-                    message: 'User created !',
+                    message: 'User created!',
                     result: result
                 });
             })
             .catch(error => {
                 res.status(500).json({
-                    message: 'User not created !',
-                    error: error
+                    message: "Vos identifiants d'authentification sont invalides!"
                 });
             });
         });
@@ -61,7 +60,7 @@ router.post('/login', (req, res, next) => {
             });
         }).catch(error => {
             return res.status(401).json({
-                message: 'Auth failed !'
+                message: "Vos identifiants d'authentification sont invalides!"
             });
         });
 });

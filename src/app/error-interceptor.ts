@@ -15,11 +15,20 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
-                this.dialog.open(ErrorComponent);
-                /* Cette manière de faire est dépréciée */
-                return throwError(error);
+                let errorMessage = 'Une erreur inconnue est survenue !';
+                
+                if (error.error.message) {
+                    errorMessage = error.error.message;
+                }
+                this.dialog.open(
+                    ErrorComponent, 
+                    { data: 
+                        { message: errorMessage},
+                        panelClass: 'error-dialog'
+                    }
+                );
 
-                /* Nouvelle manière de faire */
+                return throwError(error);
                 /* return throwError(() => new Error('Custom error message')); */
             })
         );

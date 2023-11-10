@@ -3,3 +3,7 @@
 body {
     margin: 0;
 }
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    overflow: hidden !important;
+}
