@@ -8,6 +8,7 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit { 
+  public title: string = 'projet-nodejs-angular';
 
   constructor(
     private authService: AuthService

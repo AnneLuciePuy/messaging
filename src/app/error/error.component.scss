@@ -1,0 +1,21 @@
+.list-container {
+    margin: 30px;
+
+    .list-title {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 25px;
+        font-family: sans-serif;
+        font-weight: bolder;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .div-button {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}

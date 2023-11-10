@@ -20,55 +20,65 @@ export class AuthService {
         private router: Router
     ) {}
 
-    getToken() {
+    public getToken() {
         return this.token;
     }
 
-    getIsAuth() {
+    public getIsAuth() {
         return this.isAuthenticated;
     }
 
-    getUserId() {
+    public getUserId() {
         return this.userId;
     }
 
-    getAuthStatusLister() {
+    public getAuthStatusLister() {
         return this.authStatusLister.asObservable();
     }
 
-    createUser(email: string, password: string) {
+    public createUser(email: string, password: string) {
         const authData: AuthData = {email: email, password: password};
         this.http.post('http://localhost:3000/api/user/signup', authData)
-        .subscribe((response) => {
-            this.router.navigate(['/']);
+        .subscribe({
+            next: (response) => {
+              this.router.navigate(['/']);
+            },
+            error: (error) => {
+              this.authStatusLister.next(false);
+            }
         });
     }
 
-    login(email: string, password: string) {
+    public login(email: string, password: string) {
         const authData: AuthData = {email: email, password: password};
         this.http
             .post<{ message: string, token: string, expiresIn: number, userId: string }>('http://localhost:3000/api/user/login', authData)
-            .subscribe((response) => {
-                const token = response.token;
-                this.token = token;
+            .subscribe({
+                next: (response) => {
+                    const token = response.token;
+                    this.token = token;
 
-                if (token) {
-                    const expiresInDuration = response.expiresIn;
-                    this.setAuthTimer(expiresInDuration);
-                    this.isAuthenticated = true;
-                    this.userId = response.userId;
-                    this.authStatusLister.next(true);
+                    if (token) {
+                        const expiresInDuration = response.expiresIn;
+                        this.setAuthTimer(expiresInDuration);
+                        this.isAuthenticated = true;
+                        this.userId = response.userId;
+                        this.authStatusLister.next(true);
 
-                    const now = new Date();
-                    const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-                    this.saveAuthData(token, expirationDate, this.userId);
+                        const now = new Date();
+                        const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+                        this.saveAuthData(token, expirationDate, this.userId);
 
-                    this.router.navigate(['/']);
-                };
+                        this.router.navigate(['/']);
+                    };
+                },
+                error: (error) => {
+                    this.authStatusLister.next(false);
+                }
             });
     }
 
-    autoAuthUser() {
+    public autoAuthUser() {
        const authInformation = this.getAuthData();
        if (!authInformation) {
             return;
@@ -86,7 +96,7 @@ export class AuthService {
         };
     }
 
-    logout() {
+    public logout() {
         this.token = null;
         this.isAuthenticated = false;
         this.authStatusLister.next(false);

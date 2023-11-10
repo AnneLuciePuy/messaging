@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,9 +9,11 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit{
-  isLoading: boolean = false;
-  signupForm: FormGroup;
+export class SignupComponent implements OnInit, OnDestroy {
+  public isLoading: boolean = false;
+  public signupForm: FormGroup;
+
+  private authStatusSub: Subscription;
 
   constructor(
     public authService: AuthService
@@ -24,15 +28,26 @@ export class SignupComponent implements OnInit{
         validators: [Validators.required]
       })
     });
+
+    this.authStatusSub = this.authService.getAuthStatusLister().subscribe({
+      next: (authStatus) => {
+        this.isLoading = false;
+      }
+    });
   }
 
-  onSignup() {
+  public onSignup() {
     if (this.signupForm.invalid) {
       return;
     };
 
     this.isLoading = true;
     this.authService.createUser(this.signupForm.value.email, this.signupForm.value.password);
+    this.signupForm.reset();
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 
 }

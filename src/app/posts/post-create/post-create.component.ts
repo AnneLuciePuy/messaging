@@ -12,13 +12,13 @@ import { mimeType } from "./mime-type.validator";
   styleUrls: ['./post-create.component.scss']
 })
 export class PostCreateComponent  implements OnInit {
-  enteredTitle: string = '';
-  enteredContent: string = '';
-  imagePreview: string;
-  post: Post;
-  isLoading: boolean = false;
-  postForm: FormGroup;
-  mode = "create";
+  public enteredTitle: string = '';
+  public enteredContent: string = '';
+  public imagePreview: string;
+  public post: Post;
+  public isLoading: boolean = false;
+  public postForm: FormGroup;
+  public mode = "create";
 
   private postId: string;
  
@@ -69,7 +69,7 @@ export class PostCreateComponent  implements OnInit {
     });
   }
 
-  onImagePick(event: Event) {
+  public onImagePick(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.postForm.patchValue({ image: file });
     this.postForm.get('image').updateValueAndValidity();
@@ -80,7 +80,7 @@ export class PostCreateComponent  implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onSavePost() {
+  public onSavePost() {
     if (this.postForm.invalid) {
       return;
     };

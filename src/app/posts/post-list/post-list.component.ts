@@ -12,14 +12,14 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  posts: Post[] = [];
-  userId: string;
-  isLoading: boolean = false;
-  userIsAuthenticated: boolean = false;
-  totalPosts: number = 0;
-  postsPerPage: number = 2;
-  currentPage: number = 1;
-  pageSizeOptions = [1, 2, 5, 10];
+  public posts: Post[] = [];
+  public userId: string;
+  public isLoading: boolean = false;
+  public userIsAuthenticated: boolean = false;
+  public totalPosts: number = 0;
+  public postsPerPage: number = 2;
+  public currentPage: number = 1;
+  public pageSizeOptions = [1, 2, 5, 10];
   
   private postsSub: Subscription;
   private authStatusSub: Subscription;
@@ -50,14 +50,14 @@ export class PostListComponent implements OnInit, OnDestroy {
       });
   }
 
-  onChangedPage(pageData: PageEvent) {
+  public onChangedPage(pageData: PageEvent) {
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.postsPerPage = pageData.pageSize;
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
   }
 
-  onDelete(postId: string) {
+  public onDelete(postId: string) {
     this.isLoading = true;
     this.postsService.deletePost(postId).subscribe(() => {
       this.postsService.getPosts(this.postsPerPage, this.currentPage);
