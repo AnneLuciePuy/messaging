@@ -17,7 +17,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public userIsAuthenticated: boolean = false;
   public totalPosts: number = 0;
-  public postsPerPage: number = 2;
+  public postsPerPage: number = 3;
   public currentPage: number = 1;
   public pageSizeOptions = [1, 2, 5, 10];
   
