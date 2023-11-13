@@ -13,13 +13,13 @@
       </a>
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/login" routerLinkActive="active-link">
+      <a mat-button routerLink="/auth/login" routerLinkActive="active-link">
         <i class="fa-solid fa-arrow-right-to-bracket"></i>
         Se connecter
       </a>
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/signup" routerLinkActive="active-link">
+      <a mat-button routerLink="/auth/signup" routerLinkActive="active-link">
         <i class="fa-solid fa-user-plus"></i>
         S'inscrire
       </a>
