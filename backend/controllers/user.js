@@ -38,6 +38,7 @@ exports.loginUser = (req, res, next) => {
             return bcrypt.compare(req.body.password, user.password);
         })
         .then(result => {
+            console.log('user', fetchedUser) 
             if (!result) {
                 return res.status(401).json({
                     message: 'Auth failed !'
@@ -50,7 +51,7 @@ exports.loginUser = (req, res, next) => {
             );
             res.status(200).json({ 
                 message: 'Auth success !',
-                token: token ,
+                token: token,
                 expiresIn: 3600,
                 userId: fetchedUser._id
             });
