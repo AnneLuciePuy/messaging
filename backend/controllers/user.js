@@ -57,7 +57,7 @@ exports.loginUser = (req, res, next) => {
             });
         }).catch(error => {
             return res.status(401).json({
-                message: "Vos identifiants d'authentification sont invalides!"
+                message: `Vos identifiants d'authentification sont invalides : ${error}`
             });
         });
 };
