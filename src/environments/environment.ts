@@ -1,5 +1,5 @@
 
 export const environment = {
-    production: false,
-    apiUrl: "http://localhost:3000/api"
+    production: true,
+    apiUrl: "http://node-angular-env.eba-gvdmdver.eu-north-1.elasticbeanstalk.com/api"
 };
