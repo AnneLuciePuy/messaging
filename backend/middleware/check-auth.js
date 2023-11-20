@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const jwt = require('jsonwebtoken');
 
 const jwtKey = process.env.JWT_Key || 'secret_this_should_be_longer';
 

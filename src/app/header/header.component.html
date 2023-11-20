@@ -1,11 +1,17 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="headear">
   <span>
     <a routerLink="/">
-      Mes messages
+      <img src="assets/MessageHub.png" alt="logo" class="logo">
     </a>
   </span>
   <span class="spacer"></span>
   <ul class="header-ul">
+    <li >
+      <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <i class="fa-solid fa-envelopes-bulk"></i>
+        Les messages
+      </a>
+    </li>
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="active-link">
         <i class="fa-solid fa-plus"></i>

@@ -1,9 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
+/* Réinitialisation des marges et des rembourrages par défaut */
+body, h1, h2, p, ul, li {
     margin: 0;
+    padding: 0;
+}
+
+/* Style global */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5; /* Couleur de fond générale */
+    color: #333; /* Couleur de texte principale */
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
     overflow: hidden !important;
+}
+
+/* Navbar */
+header {
+    background-color: #3498db; /* Couleur de fond de la navbar */
+    color: #fff; /* Couleur du texte dans la navbar */
+    padding: 10px; /* Espace intérieur de la navbar */
+}
+
+/* Contenu principal */
+main {
+    padding: 20px; /* Marge intérieure autour du contenu principal */
+}
+
+/* Footer */
+footer {
+    background-color: #34495e; /* Couleur de fond du pied de page */
+    color: #fff; /* Couleur du texte dans le pied de page */
+    padding: 10px; /* Espace intérieur du pied de page */
 }

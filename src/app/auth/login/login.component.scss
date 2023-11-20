@@ -1,3 +1,6 @@
+$primaryColor: #001f3f;
+$secondaryColor: #ec6b70;
+
 .list-container {
     margin-top: 50px;
 
@@ -28,4 +31,29 @@ mat-spinner {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    button {
+        width: 100%;
+        background-color: $secondaryColor;
+        color: #fff;
+    }
+}
+
+@media (min-width: 768px) {
+    .list-container {
+      width: 60%;
+      margin: 50px auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .list-container {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .list-container {
+        width: 40%;
+    }
 }

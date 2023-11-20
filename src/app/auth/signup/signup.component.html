@@ -1,4 +1,6 @@
 <div class="list-container">
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="20px">
   <h1 class="list-title">S'inscrire</h1>
   <mat-card>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
@@ -31,7 +33,6 @@
       <div class="div-button" *ngIf="!isLoading">
         <button 
           mat-raised-button 
-          color="accent" 
           type="submit">
           <i class="fa-solid fa-user-plus"></i>
           S'inscrire

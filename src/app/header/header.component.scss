@@ -1,3 +1,17 @@
+$primaryColor: #001f3f;
+$secondaryColor: #ec6b70;
+
+.logo {
+    height: 130px; 
+    width: 130px;
+}
+
+.headear {
+    background-color: $primaryColor; 
+    color: #fff;
+    padding: 10px;
+}
+
 .header-ul {
     display: flex;
 }
@@ -18,7 +32,7 @@ ul {
 }
 
 .active-link {
-    color: #ff4786 !important;
+    color: $secondaryColor !important;
     font-weight: 500;
 }
 
