@@ -50,3 +50,32 @@ ul {
 .active-link:hover {
     background-color: #64475152;
 }
+
+.mat-mdc-menu-panel {
+    background-color: #001f3f !important;
+}
+
+
+@media (min-width: 768px) {
+    .menu {
+        display: block;
+    }
+
+    .menuDesktop {
+        display: none;  
+    }
+}
+
+@media (min-width: 992px) {
+    .menu {
+        display: block;
+    }
+
+    .menuDesktop {
+        display: none;  
+    }
+}
+
+@media (min-width: 1200px) {
+
+}
