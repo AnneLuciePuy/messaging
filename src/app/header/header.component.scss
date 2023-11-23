@@ -10,10 +10,21 @@ $secondaryColor: #ec6b70;
     background-color: $primaryColor; 
     color: #fff;
     padding: 10px;
+
+    button {
+        color: white;
+    }
 }
 
 .header-ul {
     display: flex;
+}
+
+.menu-button {
+    margin-right: 24px;
+    min-width: 0;
+    padding: 0;
+    line-height: normal;
 }
 
 a {

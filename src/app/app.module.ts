@@ -11,13 +11,15 @@ import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     HeaderComponent,
-    ErrorComponent
-  ],
+    ErrorComponent,
+    FooterComponent
+   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

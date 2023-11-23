@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -13,8 +14,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private authListerSubs: Subscription;
 
+  public isSmallScreen = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
+  .pipe(map(result => result.matches));
+
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
 
