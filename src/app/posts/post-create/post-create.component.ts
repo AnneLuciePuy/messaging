@@ -79,7 +79,7 @@ export class PostCreateComponent  implements OnInit, OnDestroy {
     });
   }
 
-  public onImagePick(event: Event) {
+  /* public onImagePick(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.postForm.patchValue({ image: file });
     this.postForm.get('image').updateValueAndValidity();
@@ -88,6 +88,69 @@ export class PostCreateComponent  implements OnInit, OnDestroy {
       this.imagePreview = (reader.result as string);
     };
     reader.readAsDataURL(file);
+  } */
+
+  public onImagePick(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const img = new Image();
+        img.src = e.target.result;
+
+        img.onload = () => {
+          // Redimensionner l'image
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const maxWidth = 800;
+          const maxHeight = 800;
+
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxWidth) {
+              height *= maxWidth / width;
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width *= maxHeight / height;
+              height = maxHeight;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Convertir le canevas en base64
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+
+          // Mettre à jour le formulaire et l'aperçu de l'image
+          this.postForm.patchValue({ image: this.dataURItoBlob(dataUrl) });
+          this.postForm.get('image').updateValueAndValidity();
+          this.imagePreview = dataUrl;
+        };
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  private dataURItoBlob(dataURI: string): Blob {
+    const byteString = atob(dataURI.split(',')[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: 'image/jpeg' });
   }
 
   public onSavePost() {
