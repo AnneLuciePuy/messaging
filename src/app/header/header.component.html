@@ -6,8 +6,8 @@
   </span>
   <span class="spacer"></span>
 
-  <!-- Burger Menu for desktop screen -->
-  <ng-container>
+  <!-- Menu Desktop pour les écrans larges -->
+  <div fxHide.lt-md="true" class="headerDesktop">
     <ul class="header-ul">
       <li >
         <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
@@ -40,14 +40,15 @@
         </button>
       </li>
     </ul>
-  </ng-container>
+  </div>
 
-  <!-- Burger Menu for small screen -->
-  <ng-container>
-    <button mat-button [matMenuTriggerFor]="aboveMenu">
+  <!-- Burger Menu pour les écrans petits -->
+  <div fxHide.gt-sm="true" class="headerBurger">
+    <button mat-button [matMenuTriggerFor]="menu">
       <i class="fa-solid fa-bars"></i>
     </button>
-    <mat-menu #aboveMenu="matMenu" yPosition="above">
+
+    <mat-menu #menu="matMenu" yPosition="above">
       <li mat-menu-item>
         <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
           <i class="fa-solid fa-envelopes-bulk"></i>
@@ -79,6 +80,6 @@
         </button>
       </li>
     </mat-menu>
-  </ng-container>
+  </div>
 </mat-toolbar>
 

@@ -4,6 +4,7 @@ $secondaryColor: #ec6b70;
 .logo {
     height: 130px; 
     width: 130px;
+    margin-bottom: 10px;
 }
 
 .headear {
@@ -55,24 +56,24 @@ ul {
     background-color: #001f3f !important;
 }
 
+.headerBurger {
+    display: none;  
 
-@media (min-width: 768px) {
-    .menu {
-        display: block;
-    }
-
-    .menuDesktop {
-        display: none;  
+    button i {
+        font-size: 1.5rem; 
+        margin-top: 10px;
     }
 }
 
-@media (min-width: 992px) {
-    .menu {
-        display: block;
+@media (max-width: 768px) {
+    .headerBurger {
+      display: block;
     }
+}
 
-    .menuDesktop {
-        display: none;  
+@media (max-width: 992px) {
+    .headerBurger {
+        display: block;
     }
 }
 
