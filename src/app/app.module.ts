@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +14,8 @@ import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
 import { FooterComponent } from './footer/footer.component';
+import { MatPaginatorIntlFrench } from './posts/post-create/traduction-mat-paginator.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [				
@@ -28,11 +31,18 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     AngularMaterialModule,
     PostsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass:  AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass:  ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass:  ErrorInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlFrench }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,9 @@
+$primaryColor: #001f3f;
+$secondaryColor: #ec6b70;
+
 .header-modale {
     padding: 10px;
-    background-color: #ff4786;
+    background-color: $secondaryColor;
     color: white;
     text-align: center;
     margin-bottom: 25px;
@@ -20,7 +23,7 @@ p {
     margin: 15px;
 
     button {
-        background-color: #3f51b5;
+        background-color: $primaryColor;
         color: white;
     }
 }
