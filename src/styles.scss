@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+$primaryColor: #001f3f;
+
 /* Réinitialisation des marges et des rembourrages par défaut */
 body, h1, h2, p, ul, li {
     margin: 0;
@@ -9,8 +11,8 @@ body, h1, h2, p, ul, li {
 /* Style global */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5; /* Couleur de fond générale */
-    color: #333; /* Couleur de texte principale */
+    background-color: #f5f5f5; 
+    color: #333;
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -19,19 +21,23 @@ body {
 
 /* Navbar */
 header {
-    background-color: #3498db; /* Couleur de fond de la navbar */
-    color: #fff; /* Couleur du texte dans la navbar */
-    padding: 10px; /* Espace intérieur de la navbar */
+    background-color: #3498db; 
+    color: #fff;
+    padding: 10px; 
 }
 
 /* Contenu principal */
 main {
-    padding: 20px; /* Marge intérieure autour du contenu principal */
+    padding: 20px; 
 }
 
-/* Footer */
-footer {
-    background-color: #34495e; /* Couleur de fond du pied de page */
-    color: #fff; /* Couleur du texte dans le pied de page */
-    padding: 10px; /* Espace intérieur du pied de page */
+
+.mat-mdc-menu-content, .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
+    background-color: $primaryColor;
+    color: white;
+    border-color: $primaryColor;
+}
+
+.mat-mdc-button.mat-unthemed {
+    --mdc-text-button-label-text-color: #fff;
 }
