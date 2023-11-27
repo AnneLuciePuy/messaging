@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,7 +16,6 @@ import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
 import { FooterComponent } from './footer/footer.component';
 import { MatPaginatorIntlFrench } from './posts/post-create/traduction-mat-paginator.service';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [				
