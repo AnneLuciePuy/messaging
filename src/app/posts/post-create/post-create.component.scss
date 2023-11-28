@@ -1,3 +1,6 @@
+$primaryColor: #001f3f;
+$secondaryColor: #ec6b70;
+
 .list-container {
     margin-top: 30px;
 
@@ -26,12 +29,12 @@ mat-spinner {
 }
 
 .button-image {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
     button {
         padding: 10px;
-        border-color: #3f51b5;
-        border-radius: 4px;
+        width: 100%;
+        margin-top: 6px;
     }
 
     input[type="file"] {
@@ -45,6 +48,7 @@ mat-spinner {
 
     img {
         height: 100%;
+        width: 50%;
     }
 }
 
@@ -52,5 +56,30 @@ mat-spinner {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin: 5px 0;
+
+    button {
+        width: 100%;
+        background-color: $secondaryColor;
+        color: #fff;
+    }
 }
 
+@media (min-width: 768px) {
+    .list-container {
+      width: 60%;
+      margin: 30px auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .list-container {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .list-container {
+        width: 40%;
+    }
+}
