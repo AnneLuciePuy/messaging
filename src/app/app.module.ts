@@ -15,7 +15,7 @@ import { ErrorComponent } from './error/error.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostsModule } from './posts/posts.module';
 import { FooterComponent } from './footer/footer.component';
-import { MatPaginatorIntlFrench } from './posts/post-create/traduction-mat-paginator.service';
+import { MatPaginatorIntlFrench } from './posts/post-list/traduction-mat-paginator.service';
 
 @NgModule({
   declarations: [				

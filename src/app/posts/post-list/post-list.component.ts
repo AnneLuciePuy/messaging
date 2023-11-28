@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 
 import { Post } from '../post.model';
@@ -26,8 +26,17 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   constructor(
     public postsService: PostsService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private paginator: MatPaginatorIntl
+  ) {
+    paginator.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      if (length == 0 || pageSize == 0) { return `0 de ${length}`; }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+      return `${startIndex + 1} - ${endIndex} sur ${length}`;
+    };
+   }
 
   ngOnInit() {
     this.isLoading = true;
