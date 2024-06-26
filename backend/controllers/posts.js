@@ -28,7 +28,7 @@ exports.createPost = (req, res, next) => {
 
 exports.updatePost = (req, res, next) => {
     let imagePath = req.body.imagePath;
-    if (req.file) {
+    if (req.file) { 
         const url = req.protocol + '://' + req.get("host");
         imagePath = url + "/images/" + req.file.filename;
     };

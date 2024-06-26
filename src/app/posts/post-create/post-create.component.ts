@@ -102,8 +102,8 @@ export class PostCreateComponent  implements OnInit, OnDestroy {
           // Redimensionner l'image
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
-          const maxWidth = 800;
-          const maxHeight = 800;
+          const maxWidth = 300;
+          const maxHeight = 300;
 
           let width = img.width;
           let height = img.height;
